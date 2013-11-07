@@ -1,0 +1,4 @@
+- hosts: gwyn02
+  sudo: True
+  roles:
+    - splunk-forwarder

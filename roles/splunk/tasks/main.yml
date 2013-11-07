@@ -1,0 +1,12 @@
+---
+- name: copy over the splunk installation deb
+  copy: src={{ splunk_filename }} dest=/tmp
+
+- name: install splunk with dpkg
+  command: dpkg -i /tmp/{{ splunk_filename }} creates=/opt/splunk
+
+- name: splunk license
+  command: /opt/splunk/bin/splunk start --accept-license creates=/opt/splunk/etc/users/splunk-system-user
+
+- name: setup to start at boot
+  command: /opt/splunk/bin/splunk enable boot-start
